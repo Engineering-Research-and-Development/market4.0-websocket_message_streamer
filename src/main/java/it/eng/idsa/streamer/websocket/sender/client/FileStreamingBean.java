@@ -24,6 +24,7 @@ public class FileStreamingBean {
     private String serverIP;
     private int serverPort;
 
+
     private static final int DEFAULT_STREAM_BUFFER_SIZE = 127;
     private int streamBufferSize = DEFAULT_STREAM_BUFFER_SIZE;
 

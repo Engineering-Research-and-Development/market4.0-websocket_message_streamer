@@ -1,5 +1,8 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -12,9 +15,11 @@ public class ResponseMessageBufferBean {
     private BlockingQueue<byte[]> responseMessageQueue;
 
     private static ResponseMessageBufferBean instance;
+    private static final Logger logger = LogManager.getLogger(ResponseMessageBufferBean.class);
+
 
     private ResponseMessageBufferBean() {
-    	this.responseMessageQueue = new ArrayBlockingQueue<>(1);
+        	this.responseMessageQueue = new ArrayBlockingQueue<>(1);
     }
 
     public static ResponseMessageBufferBean getInstance() {
@@ -28,22 +33,22 @@ public class ResponseMessageBufferBean {
         return instance;
     }
 
-    public void add(byte[] msg) {
-        try {
-            responseMessageQueue.put(msg);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+     public void add(byte[] msg) {
+         try {
+             responseMessageQueue.put(msg);
+         } catch (InterruptedException e) {
+            logger.error("ResponseMessageBufferBean error in add method  with stack: "+ e.getMessage());
+         }
+     }
 
-    public byte[] remove() {
-        try {
-            return responseMessageQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            responseMessageQueue.clear();
-        }
-        return null;
-    }
+     public byte[] remove() {
+         try {
+             return responseMessageQueue.take();
+         } catch (InterruptedException e) {
+            logger.error("ResponseMessageBufferBean error in remove method  with stack: "+ e.getMessage());
+         } finally {
+             //responseMessageQueue.clear();
+         }
+         return null;
+     }
 }

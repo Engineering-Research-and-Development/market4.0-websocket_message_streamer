@@ -1,5 +1,8 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -9,8 +12,9 @@ import java.util.concurrent.BlockingQueue;
 
 public class RecreatedMultipartMessageBean {
     private BlockingQueue<String> multipartMessageQueue;
-
     private static RecreatedMultipartMessageBean instance;
+    private static final Logger logger = LogManager.getLogger(RecreatedMultipartMessageBean.class);
+
 
     private RecreatedMultipartMessageBean() {
         this.multipartMessageQueue = new ArrayBlockingQueue<>(1);
@@ -32,7 +36,7 @@ public class RecreatedMultipartMessageBean {
         try {
             multipartMessageQueue.put(multipartMessage);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+             logger.error("RecreatedMultipartMessageBean error in set method  with stack: "+ e.getMessage());
         }
     }
 
@@ -40,9 +44,9 @@ public class RecreatedMultipartMessageBean {
         try {
             return multipartMessageQueue.take();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+              logger.error("RecreatedMultipartMessageBean error in remove method  with stack: "+ e.getMessage());
         } finally {
-            multipartMessageQueue.clear();
+            //multipartMessageQueue.clear();
         }
         return null;
     }

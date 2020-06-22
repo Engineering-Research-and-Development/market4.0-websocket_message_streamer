@@ -8,9 +8,8 @@ import org.quartz.JobExecutionContext;
 
 import java.time.LocalDateTime;
 
-public class FileRecreatorJob implements Job {
+public class FileRecreatorJob implements Job, Runnable {
     private static final Logger logger = LogManager.getLogger(FileRecreatorJob.class);
-
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) {
@@ -23,9 +22,13 @@ public class FileRecreatorJob implements Job {
             String recreatedMultipartMessage = WebSocketServerManager.recreatedMultipartMessageBeanWebSocket().remove();
             // Extract header and payload from the multipart message
             WebSocketServerManager.getMessageWebSocketResponse().setMultipartMessage(recreatedMultipartMessage);
-            jobExecutionContext.setResult(recreatedMultipartMessage);
         } catch (Exception e) {
             logger.error("Error received during FileRecreatorJob execution with stack: " + e.getMessage());
         }
+    }
+
+    @Override
+    public void run() {
+        execute(null);
     }
 }

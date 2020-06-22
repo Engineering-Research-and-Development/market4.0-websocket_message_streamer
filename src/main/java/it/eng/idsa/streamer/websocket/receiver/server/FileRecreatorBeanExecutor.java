@@ -7,6 +7,9 @@ import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Antonio Scatoloni
@@ -16,17 +19,13 @@ public class FileRecreatorBeanExecutor {
     private static final Logger logger = LogManager.getLogger(FileRecreatorBeanExecutor.class);
     private static FileRecreatorBeanExecutor instance;
     private static ResourceBundle configuration = ResourceBundle.getBundle("config");
-    private Scheduler scheduler = null;
-
     private Integer port;
     private String keystorePath;
     private String keystorePassword;
-    private Integer recreationFrequency;
     private String path;
     private String forwardTo;
 
     private FileRecreatorBeanExecutor() {
-        trigger();
     }
 
     public static FileRecreatorBeanExecutor getInstance() {
@@ -44,19 +43,28 @@ public class FileRecreatorBeanExecutor {
         return instance;
     }
 
-    private void trigger() {
-        try {
-            Integer recreationFrequency = getRecreationFrequency() != null ? getRecreationFrequency() :
-                    Integer.parseInt(configuration.getString("application.recreation.frequency"));
-            JobDetail job = JobBuilder.newJob(FileRecreatorJob.class).build();
+    public void trigger(Integer recreationFrequency) {
+        Integer recreationFreq = recreationFrequency != null ? recreationFrequency :
+                Integer.parseInt(configuration.getString("application.recreation.frequency"));
+        doTriggerWithSchedulerService(recreationFreq);
+    }
 
+    public void trigger() {
+        doTriggerWithSchedulerService(Integer.parseInt(configuration.getString("application.recreation.frequency")));
+    }
+
+    //Quartz Scheduler not used at the moment!
+    private void doTriggerWithQuartz(Integer recreationFrequency) {
+        try {
+            JobDetail job = JobBuilder.newJob(FileRecreatorJob.class).build();
             // Trigger the job to run on the next round minute
             Trigger trigger = TriggerBuilder
                     .newTrigger()
                     .withSchedule(
                             SimpleScheduleBuilder.simpleSchedule()
                                     .withIntervalInMilliseconds(recreationFrequency)
-                                    .repeatForever()).build();
+                                    .repeatForever())
+                    .build();
             // schedule it
             Scheduler scheduler = new StdSchedulerFactory().getScheduler();
             scheduler.start();
@@ -66,16 +74,10 @@ public class FileRecreatorBeanExecutor {
         }
     }
 
-    public String getFileRecreatorResult() {
-        try {
-            for (JobExecutionContext jobContext : scheduler.getCurrentlyExecutingJobs()) {
-                return jobContext.getResult().toString();
-            }
-        } catch (SchedulerException e) {
-            logger.error("Error in Retrieving data from FileRecreator with stack: " + e.getMessage());
-        }
-
-        return null;
+    private void doTriggerWithSchedulerService(Integer recreationFrequency) {
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        FileRecreatorJob fileRecreatorJob = new FileRecreatorJob();
+        executorService.scheduleAtFixedRate(fileRecreatorJob, 0, recreationFrequency, TimeUnit.MILLISECONDS);
     }
 
     public Integer getPort() {
@@ -100,14 +102,6 @@ public class FileRecreatorBeanExecutor {
 
     public void setKeystorePassword(String keystorePassword) {
         this.keystorePassword = keystorePassword;
-    }
-
-    public Integer getRecreationFrequency() {
-        return recreationFrequency;
-    }
-
-    public void setRecreationFrequency(Integer recreationFrequency) {
-        this.recreationFrequency = recreationFrequency;
     }
 
     public String getPath() {

@@ -26,6 +26,7 @@ public class WebSockeMessageStreamerConfig {
               fileRecreatorBeanExecutor.setPort(9060); //optional default 9000
               fileRecreatorBeanExecutor.setKeystorePassword("server.jks"); //optional default classpath: ssl-server.jks
               fileRecreatorBeanExecutor.setKeystorePassword("password");
+              fileRecreatorBeanExecutor.trigger();  
         return fileRecreatorBeanExecutor;
     }
 

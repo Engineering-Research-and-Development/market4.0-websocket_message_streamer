@@ -3,8 +3,6 @@ package it.eng.idsa.streamer.websocket.receiver.server;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
 
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
@@ -51,27 +49,6 @@ public class FileRecreatorBeanExecutor {
 
     public void trigger() {
         doTriggerWithSchedulerService(Integer.parseInt(configuration.getString("application.recreation.frequency")));
-    }
-
-    //Quartz Scheduler not used at the moment!
-    private void doTriggerWithQuartz(Integer recreationFrequency) {
-        try {
-            JobDetail job = JobBuilder.newJob(FileRecreatorJob.class).build();
-            // Trigger the job to run on the next round minute
-            Trigger trigger = TriggerBuilder
-                    .newTrigger()
-                    .withSchedule(
-                            SimpleScheduleBuilder.simpleSchedule()
-                                    .withIntervalInMilliseconds(recreationFrequency)
-                                    .repeatForever())
-                    .build();
-            // schedule it
-            Scheduler scheduler = new StdSchedulerFactory().getScheduler();
-            scheduler.start();
-            scheduler.scheduleJob(job, trigger);
-        } catch (SchedulerException e) {
-            logger.error("Error during Quartz Scheduling of FileRecreatorJob with stack: " + e.getMessage());
-        }
     }
 
     private void doTriggerWithSchedulerService(Integer recreationFrequency) {

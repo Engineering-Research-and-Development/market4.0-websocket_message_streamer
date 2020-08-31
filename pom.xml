@@ -21,7 +21,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <information.model.version>2.1.0-SNAPSHOT</information.model.version>
+        <information.model.version>4.0.0</information.model.version>
     </properties>
 
     <dependencies>

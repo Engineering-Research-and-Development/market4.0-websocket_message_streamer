@@ -98,7 +98,7 @@ public class MessageWebSocketSender {
         // We don't have status of the response (is it 200 OK or not). We have only the content of the response.
         String responseMessage = new String(WebSocketClientManager.getResponseMessageBufferWebSocketClient().remove());
         closeWSClient(wsClient, message);
-        logger.info("received response: " + responseMessage);
+        logger.debug("received response: " + responseMessage);
         return responseMessage;
     }
 

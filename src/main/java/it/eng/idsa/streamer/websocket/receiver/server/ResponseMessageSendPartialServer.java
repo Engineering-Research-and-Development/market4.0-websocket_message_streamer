@@ -1,8 +1,8 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
 import it.eng.idsa.streamer.WebSocketServerManager;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
 

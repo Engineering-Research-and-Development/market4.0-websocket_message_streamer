@@ -6,7 +6,7 @@
 
     <groupId>it.eng.idsa</groupId>
     <artifactId>websocket-message-streamer</artifactId>
-    <version>1.0.8-SNAPSHOT</version>
+    <version>1.0.9-SNAPSHOT</version>
 
     <repositories>
         <repository>
@@ -68,6 +68,14 @@
     </dependencies>
 
     <build>
+    	<resources>
+      		<resource>
+        		<directory>src/main/resources</directory>
+        			<excludes>
+          				<exclude>ssl-server.jks</exclude>
+          		</excludes>
+         	</resource>
+        </resources>
         <plugins>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>

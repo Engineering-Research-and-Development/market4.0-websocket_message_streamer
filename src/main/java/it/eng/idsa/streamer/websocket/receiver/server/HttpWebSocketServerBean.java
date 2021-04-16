@@ -1,12 +1,12 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.http.HttpVersion;
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.BindException;
 import java.net.URL;
@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
  * @author Antonio Scatoloni
  */
 public class HttpWebSocketServerBean {
-    private static final Logger logger = LogManager.getLogger(HttpWebSocketServerBean.class);
+	private static final Logger logger = LoggerFactory.getLogger(HttpWebSocketServerBean.class);
     public static final String WS_URL = "/incoming-data-channel-received-message";
 
     private static HttpWebSocketServerBean instance;

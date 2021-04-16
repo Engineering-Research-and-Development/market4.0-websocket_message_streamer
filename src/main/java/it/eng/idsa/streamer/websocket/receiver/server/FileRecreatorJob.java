@@ -1,13 +1,14 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
 import it.eng.idsa.streamer.WebSocketServerManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 
 public class FileRecreatorJob implements Runnable {
-    private static final Logger logger = LogManager.getLogger(FileRecreatorJob.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileRecreatorJob.class);
 
     @Override
     public void run() {

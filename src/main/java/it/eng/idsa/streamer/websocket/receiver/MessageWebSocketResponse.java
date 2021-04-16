@@ -2,15 +2,11 @@ package it.eng.idsa.streamer.websocket.receiver;
 
 import it.eng.idsa.streamer.WebSocketServerManager;
 import it.eng.idsa.streamer.websocket.receiver.server.ResponseMessageBufferBean;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class MessageWebSocketResponse {
-
-    private static final Logger logger = LogManager.getLogger(MessageWebSocketResponse.class);
     private static MessageWebSocketResponse instance;
     private PropertyChangeSupport support;
     //private String multipartMessage;

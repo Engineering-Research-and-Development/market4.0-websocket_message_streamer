@@ -1,7 +1,7 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -13,8 +13,7 @@ import java.util.concurrent.BlockingQueue;
 public class RecreatedMultipartMessageBean {
     private BlockingQueue<String> multipartMessageQueue;
     private static RecreatedMultipartMessageBean instance;
-    private static final Logger logger = LogManager.getLogger(RecreatedMultipartMessageBean.class);
-
+	private static final Logger logger = LoggerFactory.getLogger(RecreatedMultipartMessageBean.class);
 
     private RecreatedMultipartMessageBean() {
         this.multipartMessageQueue = new ArrayBlockingQueue<>(1);

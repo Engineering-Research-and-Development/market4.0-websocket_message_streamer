@@ -11,13 +11,13 @@ import it.eng.idsa.streamer.util.RejectionMessageType;
 import it.eng.idsa.streamer.websocket.sender.client.FileStreamingBean;
 import it.eng.idsa.streamer.websocket.receiver.server.HttpWebSocketServerBean;
 import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.asynchttpclient.DefaultAsyncHttpClientConfig;
 import org.asynchttpclient.SslEngineFactory;
 import org.asynchttpclient.netty.ssl.JsseSslEngineFactory;
 import org.asynchttpclient.ws.WebSocket;
 import org.asynchttpclient.ws.WebSocketUpgradeHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -38,7 +38,7 @@ import static org.asynchttpclient.Dsl.asyncHttpClient;
  */
 
 public class MessageWebSocketSender {
-    private static final Logger logger = LogManager.getLogger(MessageWebSocketSender.class);
+    private static final Logger logger = LoggerFactory.getLogger(MessageWebSocketSender.class);
     public static final String REGEX_WSS = "(wss://)([^:^/]*)(:)(\\d*)";
 
     private static MessageWebSocketSender instance;

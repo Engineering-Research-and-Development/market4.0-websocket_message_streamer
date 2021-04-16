@@ -1,10 +1,9 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
-
 import it.eng.idsa.streamer.WebSocketServerManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.websocket.api.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
@@ -14,7 +13,7 @@ import java.nio.charset.StandardCharsets;
  * @author Antonio Scatoloni
  */
 public class HttpWebSocketMessagingLogic {
-    private static final Logger logger = LogManager.getLogger(HttpWebSocketMessagingLogic.class);
+	private static final Logger logger = LoggerFactory.getLogger(HttpWebSocketMessagingLogic.class);
 
     private static HttpWebSocketMessagingLogic instance;
 
@@ -40,6 +39,7 @@ public class HttpWebSocketMessagingLogic {
         if (receivedMessage.equals(CLOSURE_FRAME)) {
             // The last frame is received - skip this frame
             // This indicate that Client WebSocket now is closed
+        	logger.debug("Received closure frame");
         } else {
             // Put the received frame in the frameBuffer
             WebSocketServerManager.getFrameBufferWebSocket().add(message.clone());
@@ -49,7 +49,7 @@ public class HttpWebSocketMessagingLogic {
                 Thread responseMessageSendPartialServerThread = new Thread(responseMessageSendPartialServer, "ResponseMessageSendPartialServer");
                 responseMessageSendPartialServerThread.start();
             }
-            //logger.info(HttpWebSocketMessagingLogic.class.getSimpleName() +" DATA RECEIVED FROM SOCKET -> " + receivedMessage);
+            logger.debug(HttpWebSocketMessagingLogic.class.getSimpleName() +" DATA RECEIVED FROM SOCKET -> " + receivedMessage);
 
         }
     }

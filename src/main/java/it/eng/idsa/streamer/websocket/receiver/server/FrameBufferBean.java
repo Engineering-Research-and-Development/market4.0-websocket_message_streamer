@@ -1,7 +1,7 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.*;
 
@@ -13,7 +13,7 @@ public class FrameBufferBean {
     private BlockingQueue<byte[]> frameQueue;
 
     private static FrameBufferBean instance;
-    private static final Logger logger = LogManager.getLogger(FrameBufferBean.class);
+	private static final Logger logger = LoggerFactory.getLogger(FrameBufferBean.class);
 
 
     private FrameBufferBean() {

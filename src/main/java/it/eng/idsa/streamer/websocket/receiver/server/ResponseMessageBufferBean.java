@@ -1,7 +1,7 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -15,7 +15,7 @@ public class ResponseMessageBufferBean {
     private BlockingQueue<byte[]> responseMessageQueue;
 
     private static ResponseMessageBufferBean instance;
-    private static final Logger logger = LogManager.getLogger(ResponseMessageBufferBean.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResponseMessageBufferBean.class);
 
 
     private ResponseMessageBufferBean() {

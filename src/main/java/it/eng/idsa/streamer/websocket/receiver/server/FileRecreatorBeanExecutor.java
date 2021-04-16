@@ -1,9 +1,5 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -14,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class FileRecreatorBeanExecutor {
-    private static final Logger logger = LogManager.getLogger(FileRecreatorBeanExecutor.class);
+
     private static FileRecreatorBeanExecutor instance;
     private static ResourceBundle configuration = ResourceBundle.getBundle("config");
     private Integer port;

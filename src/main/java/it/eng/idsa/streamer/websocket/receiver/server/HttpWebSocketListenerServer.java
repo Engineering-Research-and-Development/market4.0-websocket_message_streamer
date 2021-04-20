@@ -1,9 +1,9 @@
 package it.eng.idsa.streamer.websocket.receiver.server;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketPartialListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.ByteBuffer;
 
@@ -12,7 +12,7 @@ import java.nio.ByteBuffer;
  * @author Antonio Scatoloni
  */
 public class HttpWebSocketListenerServer implements WebSocketPartialListener {
-    private static final Logger logger = LogManager.getLogger(HttpWebSocketListenerServer.class);
+	private static final Logger logger = LoggerFactory.getLogger(HttpWebSocketListenerServer.class);
     private Session session;
 
     @Override
@@ -27,7 +27,7 @@ public class HttpWebSocketListenerServer implements WebSocketPartialListener {
 
     @Override
     public void onWebSocketError(Throwable cause) {
-        logger.error(cause);
+        logger.error("WS error", cause);
     }
 
     @Override

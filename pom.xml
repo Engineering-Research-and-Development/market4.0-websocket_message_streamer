@@ -14,8 +14,12 @@
             <name>maven-snapshots</name>
             <url>https://maven.iais.fraunhofer.de/artifactory/eis-ids-public</url>
         </repository>
+	    <repository>
+	        <id>github</id>
+	        <url>https://maven.pkg.github.com/Engineering-Research-and-Development/market4.0-ids_multipart_message_processor</url>
+	    </repository>
     </repositories>
-
+    
     <properties>
         <project.java.version>11</project.java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

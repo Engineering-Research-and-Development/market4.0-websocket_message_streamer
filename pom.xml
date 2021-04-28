@@ -6,7 +6,7 @@
 
     <groupId>it.eng.idsa</groupId>
     <artifactId>websocket-message-streamer</artifactId>
-    <version>1.0.10-SNAPSHOT</version>
+    <version>1.0.11-SNAPSHOT</version>
 
     <repositories>
         <repository>
@@ -19,8 +19,8 @@
     <properties>
         <project.java.version>11</project.java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <information.model.version>4.0.0</information.model.version>
-      	<multipart.message.processor.version>1.0.8-SNAPSHOT</multipart.message.processor.version>
+        <information.model.version>4.0.6</information.model.version>
+      	<multipart.message.processor.version>1.0.9-SNAPSHOT</multipart.message.processor.version>
     </properties>
 
     <dependencies>
@@ -50,11 +50,11 @@
             <artifactId>java</artifactId>
             <version>${information.model.version}</version>
         </dependency>
-        <dependency>
-            <groupId>de.fraunhofer.iais.eis.ids</groupId>
-            <artifactId>infomodel-serializer</artifactId>
-            <version>${information.model.version}</version>
-        </dependency>
+		<dependency>
+		    <groupId>de.fraunhofer.iais.eis.ids.infomodel</groupId>
+		    <artifactId>validation-serialization-provider</artifactId>
+		    <version>${information.model.version}</version>
+		</dependency>
         
         <!-- it.eng.idsa -->
 		<dependency>
@@ -79,7 +79,6 @@
 		    <artifactId>slf4j-api</artifactId>
 		    <version>1.7.30</version>
 		</dependency>
-
     </dependencies>
 
     <build>

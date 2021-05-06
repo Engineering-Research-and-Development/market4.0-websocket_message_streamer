@@ -17,6 +17,12 @@
 	    <repository>
 	        <id>github</id>
 	        <url>https://maven.pkg.github.com/Engineering-Research-and-Development/market4.0-ids_multipart_message_processor</url>
+	        <releases>
+	        	<enabled>true</enabled>
+	        </releases>
+	        <snapshots>
+	        	<enabled>true</enabled>
+	        </snapshots>
 	    </repository>
     </repositories>
     

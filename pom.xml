@@ -17,7 +17,7 @@
 	    <repository>
 	        <id>github</id>
 <!-- 	        <url>https://maven.pkg.github.com/Engineering-Research-and-Development/market4.0-ids_multipart_message_processor</url> -->
-   	        <url>https://${GITHUB_TOKEN}:x-oauth-basic@github.com/Engineering-Research-and-Development/market4.0-ids_multipart_message_processor</url>
+   	        <url>https://${GITHUB_TOKEN}:x-oauth-basic@maven.pkg.github.com/Engineering-Research-and-Development/market4.0-ids_multipart_message_processor</url>
 	        <releases>
 	        	<enabled>true</enabled>
 	        </releases>

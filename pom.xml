@@ -32,6 +32,14 @@
         <information.model.version>4.0.6</information.model.version>
       	<multipart.message.processor.version>1.0.9-SNAPSHOT</multipart.message.processor.version>
     </properties>
+    
+   	<distributionManagement>
+	    <repository>
+	      <id>github</id>
+	      <name>GitHub Packages</name>
+	      <url>https://maven.pkg.github.com/Engineering-Research-and-Development/market4.0-websocket_message_streamer</url>
+	    </repository>
+  	</distributionManagement>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.asynchttpclient/async-http-client -->

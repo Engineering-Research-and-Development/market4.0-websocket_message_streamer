@@ -6,7 +6,7 @@
 
     <groupId>it.eng.idsa</groupId>
     <artifactId>websocket-message-streamer</artifactId>
-    <version>1.0.10-SNAPSHOT</version>
+    <version>1.0.10.1-SNAPSHOT</version>
 
     <repositories>
         <repository>
@@ -88,6 +88,7 @@
         		<directory>src/main/resources</directory>
         			<excludes>
           				<exclude>ssl-server.jks</exclude>
+          				<exclude>config.properties</exclude>
           		</excludes>
          	</resource>
         </resources>

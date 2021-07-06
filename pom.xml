@@ -31,7 +31,7 @@
         <project.java.version>11</project.java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <information.model.version>4.0.0</information.model.version>
-      	<multipart.message.processor.version>1.0.9-SNAPSHOT</multipart.message.processor.version>
+      	<multipart.message.processor.version>1.0.8-SNAPSHOT</multipart.message.processor.version>
     </properties>
 
     <dependencies>

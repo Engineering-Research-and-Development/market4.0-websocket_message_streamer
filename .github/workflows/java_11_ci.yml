@@ -16,4 +16,6 @@ jobs:
            
       - name: Build with Maven
         run: mvn -B clean package
+        env:
+          GH_PACKAGE_REPO_PASSWORD: ${{ secrets.GH_PACKAGE_REPO_PASSWORD }}
         

@@ -15,7 +15,24 @@ In a maven project include this dependency:
 
 ## Usage
 
+Copy config.properties file to resource folder of application which is using this library.
+
+Content of the *config.properties* file:
+
+```
+### App setup
+server.ssl.key-password=changeit
+server.ssl.key-store=/cert/ssl-server.jks
+server.ssl.port=9000
+server.path=/incoming-data-channel-received-message
+# Timer in ms
+application.recreation.frequency=1000
+```
+Modify values for keystore password and location of jks file, according your configuration.
+
+
 In the Bootstrap of your application `init` the library in this way (**Spring Boot** not required):
+
 ```
 @Configuration
 public class WebSockeMessageStreamerConfig {

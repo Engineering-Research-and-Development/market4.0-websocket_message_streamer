@@ -102,6 +102,7 @@
         		<directory>src/main/resources</directory>
         			<excludes>
           				<exclude>ssl-server.jks</exclude>
+          				<exclude>config.properties</exclude>
           		</excludes>
          	</resource>
         </resources>
